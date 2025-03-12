@@ -73,8 +73,8 @@ ui <- page_sidebar(
     card(card_header("Species composition of catch"),
          tableOutput("species_table")),
     
-    col_widths = c(3, 3, 3, 3,  8, 4),
-    row_heights = c(1, 7))
+    col_widths = c(3, 3, 3, 3,  7, 5),
+    row_heights = c(2, 7))
 )
 
 server <- function(input, output, session){
@@ -108,7 +108,7 @@ server <- function(input, output, session){
                 .groups = "drop")
     return (
       grouped |> ggplot(aes(x=year, y = total, color=!!sym(input$breakdown))) +
-        geom_line(size=1) +
+        geom_line(linewidth=1) +
         xlab("Year") +
         ylab("Catch (Thousand Tonnes)") +
         theme_classic(base_size = 18) +
@@ -157,6 +157,7 @@ server <- function(input, output, session){
     top20 |> rename("Scientific Name" = scientific_name,
                     "Catch Percentage (%)" = percentage)
   },
+  spacing = 'xs',
   digits = 2,
   align = 'c')
   
