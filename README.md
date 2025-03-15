@@ -20,9 +20,14 @@ In order to run the app locally, please follow these steps:
 git clone https://github.com/fishydays/UK_Fisheries_Dashboard.git
 cd UK_Fisheries_Dashboard
 ```
+2) Load required libraries
+Go to your R console and run the following command to install the required libraries locally
+```bash
+renv::restore()
+```
 
 2) Start the app
-Run the following bash command to start the app locally, the address will be displayed in the terminal window.
+Navigate to the root director of the repository and run the following bash command in terminal to start the app locally, the address will be displayed in the terminal window.
 
 ```bash
 Rscript app.R
