@@ -3,6 +3,7 @@ library(shiny)
 library(tidyverse)
 library(ggplot2)
 library(bslib)
+library(thematic)
 
 # Read in data and fill in missing values
 df <- read.csv("data/SAU_EEZ_826_v50-1.csv")
@@ -18,19 +19,20 @@ breakdown <- c("Fishing Entity" = "fishing_entity",
                "End Use Type" = "end_use_type")
 
 ggplot2::theme_set(ggplot2::theme_minimal())
+thematic_shiny()
 
 ui <- page_sidebar(
   
   # Set theme
-  # theme = bs_theme(bootswatch = "darkly",
-  #                  bg = "#222222",
-  #                  fg = "#86C7ED",
-  #                  success ="#86C7ED"),
+  theme = bs_theme(bootswatch = "darkly",
+                   bg = "#0d1429",
+                   fg = "#2ca89e",
+                   success ="#3eded1"),
   
   # Title
   title = "Fisheries Catch in the United Kingdom EEZ from 1950-2019",
   
-  sidebar = sidebar(title = "Filters",
+  sidebar = sidebar(
                     selectInput("breakdown", "Select Time Series Breakdown Type",
                                 choices = breakdown,
                                 selected='reporting_status',
@@ -57,20 +59,20 @@ ui <- page_sidebar(
                                 multiple=TRUE)),
   
   layout_columns(
-    value_box(title ="Total Tonnage",
+    value_box(title = tags$div("Total Tonnage", style = "font-size: 20px"),
               value = textOutput("tonnage")),
     
-    value_box(title ="Total Landed Value",
+    value_box(title = tags$div("Total Landed Value", style = "font-size: 20px"),
               value = textOutput("value")),
-    value_box(title="Total Number of Species Caught",
+    value_box(title= tags$div("Total Number of Species Caught", style = "font-size: 20px"),
               value = textOutput("species_count")),
-    value_box(title="Total Number of Fishing Entities",
+    value_box(title= tags$div("Total Number of Fishing Entities", style = "font-size: 20px"),
               value = textOutput("fe_count")),
     
-    card(card_header("Fisheries catch in 1950-2019"),
+    card(card_header("Fisheries catch in 1950-2019", style="font-size: 20px"),
          plotOutput("timeseries")),
     
-    card(card_header("Species composition of catch"),
+    card(card_header("Species composition of catch", style="font-size: 20px"),
          tableOutput("species_table")),
     
     col_widths = c(3, 3, 3, 3,  7, 5),
@@ -111,8 +113,10 @@ server <- function(input, output, session){
         geom_line(linewidth=1) +
         xlab("Year") +
         ylab("Catch (Thousand Tonnes)") +
-        theme_classic(base_size = 18) +
-        theme(legend.title = element_blank())
+        theme(legend.title = element_blank(),
+              legend.text = element_text(size=18),
+              axis.text = element_text(size=20),
+              axis.title = element_text(size=20))
     )
   })
   
