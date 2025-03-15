@@ -27,3 +27,26 @@ Run the following bash command to start the app locally, the address will be dis
 ```bash
 Rscript app.R
 ```
+
+## Reporting issues
+If you encounter any issues with the dashboard or have feature requests, please feel free to [open an issue](https://github.com/fishydays/UK_Fisheries_Dashboard/issues).
+
+## Contributing
+Meaningful contributions to the project are always welcomed, please follow the [contribution guideline](https://github.com/fishydays/UK_Fisheries_Dashboard/blob/main/CONTRIBUTING.md) for more information and instructions.
+
+
+## License
+### **Software**  
+MIT License  
+
+Copyright (c) 2025 **Elaine Chu**  
+
+This project is licensed under the **MIT License**.
+
+### **Non-Software Materials**  
+All non-software materials in this repository are licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**. You are free to:  
+- **Share** – Copy and redistribute the material.  
+- **Adapt** – Remix, transform, and build upon the material.  
+- **Attribution Required** – Give credit and indicate changes made.  
+
+See the full license details [here](LICENSE.md).  
