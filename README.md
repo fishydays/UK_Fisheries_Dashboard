@@ -49,4 +49,4 @@ All non-software materials in this repository are licensed under **Creative Comm
 - **Adapt** – Remix, transform, and build upon the material.  
 - **Attribution Required** – Give credit and indicate changes made.  
 
-See the full license details [here](LICENSE.md).  
+See the full license details [here](https://github.com/fishydays/UK_Fisheries_Dashboard/blob/main/LICENSE).  
