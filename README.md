@@ -12,6 +12,8 @@ This project uses data from the Sea Around Us Project available from the [Sea Ar
 ## App description
 Video walk through
 
+## Web deployed app
+### Access the deployed app online [here](https://01959c36-f31e-5e65-45b9-2d9d051e94ee.share.connect.posit.cloud/)
 
 ## Installation instructions
 In order to run the app locally, please follow these steps:
