@@ -4,6 +4,7 @@ library(tidyverse)
 library(ggplot2)
 library(bslib)
 library(thematic)
+library(plotly)
 
 # Read in data and fill in missing values
 df <- read.csv("data/SAU_EEZ_826_v50-1.csv")
@@ -30,7 +31,7 @@ ui <- page_sidebar(
                    success ="#3eded1"),
   
   # Title
-  title = "Fisheries Catch in the United Kingdom EEZ from 1950-2019",
+  title = "he Rise and Fall of UK Fisheries: A Data-Driven Journey",
   
   sidebar = sidebar(
                     selectInput("breakdown", "Select Time Series Breakdown Type",
@@ -53,7 +54,7 @@ ui <- page_sidebar(
                                 choices = sort(unique(df$commercial_group)),
                                 selected='',
                                 multiple=TRUE),
-                    selectInput("fishing_ent", "Filter by Fishing Entity",
+                    selectInput("fishing_ent", "Filter by Fishing Entity", 
                                 choices = sort(unique(df$fishing_entity)),
                                 selected='',
                                 multiple=TRUE)),
@@ -70,7 +71,7 @@ ui <- page_sidebar(
               value = textOutput("fe_count")),
     
     card(card_header("Fisheries catch in 1950-2019", style="font-size: 20px"),
-         plotOutput("timeseries")),
+         plotlyOutput("timeseries")),
     
     card(card_header("Species composition of catch", style="font-size: 20px"),
          tableOutput("species_table")),
@@ -103,21 +104,31 @@ server <- function(input, output, session){
   
   
   # Time series graph
-  output$timeseries <- renderPlot({
+  output$timeseries <- renderPlotly({
     grouped <- filtered_df() |> 
       group_by(year, !!sym(input$breakdown)) |> 
       summarise(total = sum(tonnes, na.rm =TRUE)/1000,
                 .groups = "drop")
-    return (
-      grouped |> ggplot(aes(x=year, y = total, color=!!sym(input$breakdown))) +
-        geom_line(linewidth=1) +
-        xlab("Year") +
-        ylab("Catch (Thousand Tonnes)") +
-        theme(legend.title = element_blank(),
-              legend.text = element_text(size=18),
-              axis.text = element_text(size=20),
-              axis.title = element_text(size=20))
-    )
+    
+    time_series_plot <- grouped |> 
+      ggplot(aes(x=year, y = total,
+                 color=!!sym(input$breakdown),
+                 )) +
+      geom_line(linewidth=1) +
+      geom_point(aes(text = paste("Year:", year, "<br>",
+                                  "Catch:", round(total, 2),
+                                  "Thousand Tonnes")),
+                 alpha=0, size = 0) +
+      xlab("Year") +
+      ylab("Catch (Thousand Tonnes)")+
+      guides(color = guide_legend(title = NULL)) +
+      theme(
+            legend.text = element_text(size=12, family = "Helvetica"),
+            axis.text = element_text(size=15, family = "Helvetica"),
+            axis.title = element_text(size=15, family = "Helvetica"))
+
+      ggplotly(time_series_plot, tooltip = "text")
+
   })
   
   # Total tonnage calculation
