@@ -31,7 +31,7 @@ ui <- page_sidebar(
                    success ="#3eded1"),
   
   # Title
-  title = "he Rise and Fall of UK Fisheries: A Data-Driven Journey",
+  title = "The Rise and Fall of UK Fisheries: A Data-Driven Journey",
   
   sidebar = sidebar(
                     selectInput("breakdown", "Select Time Series Breakdown Type",
