@@ -7,7 +7,7 @@ library(thematic)
 library(plotly)
 
 # Read in data and fill in missing values
-df <- read.csv("../data/raw/SAU_EEZ_826_v50-1.csv")
+df <- read.csv("data/raw/SAU_EEZ_826_v50-1.csv")
 df <- df |> mutate(end_use_type = if_else(end_use_type== "", "Discard",
                                           end_use_type))
 

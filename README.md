@@ -30,7 +30,7 @@ renv::restore()
 2) Start the app: Navigate to the root director of the repository and run the following bash command in terminal to start the app locally, the address will be displayed in the terminal window.
 
 ```bash
-Rscript app.R
+Rscript src/app.R
 ```
 
 ## Reporting issues
