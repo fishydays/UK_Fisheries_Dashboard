@@ -10,7 +10,7 @@ With just a glance, users can grasp industry trends from 1950 to 2019, while int
 This project uses data from the Sea Around Us Project available from the [Sea Around Us Project](https://www.seaaroundus.org/) website.
 
 ## App description
-Video walk through
+<video controls src="https://github.com/fishydays/UK_Fisheries_Dashboard/blob/main/img/demo.mp4" title="Video walk through"></video>
 
 ## Web deployed app
 ### Access the deployed app online [here](https://01959c36-f31e-5e65-45b9-2d9d051e94ee.share.connect.posit.cloud/)
